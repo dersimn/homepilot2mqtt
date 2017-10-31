@@ -57,6 +57,8 @@ function setRolladen(id, position) {
 			args.cid = 1;
 		} else if ( position == "DOWN" ) {
 			args.cid = 3;
+		} else if ( position == "STOP" ) {
+			args.cid = 2;
 		} else if ( position <= 100 && position >= 0 ) {
 			args.cid = 9;
 			args.goto = position;
