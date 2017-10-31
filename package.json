@@ -1,0 +1,29 @@
+{
+  "name": "homepilot2mqtt",
+  "version": "0.0.1",
+  "description": "Homepilot2 bridge for MQTT",
+  "main": "index.js",
+  "bin": {
+    "homepilot2mqtt": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dersimn/homepilot2mqtt.git"
+  },
+  "author": "Simon Christmann <simon@christmann.email>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dersimn/homepilot2mqtt/issues"
+  },
+  "homepage": "https://github.com/dersimn/homepilot2mqtt#readme",
+  "dependencies": {
+    "mqtt": "^2.13.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "yalm": "^4.1.0",
+    "yargs": "^10.0.3"
+  }
+}
