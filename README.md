@@ -16,14 +16,14 @@ I also don't use any of the Homepilot's logic functions. Logic is done in an upp
 
 ### Example usage
 
-	homepilot2mqtt --mqtt-url mqtt://10.0.0.20 --mqtt-retain false --bridge-ip 10.0.0.22 -v debug
+	docker run -d --restart=always --mqtt-url mqtt://10.0.0.20 --bridge-address 10.0.0.22 dersimn/homepilot2mqtt
 
 ## MQTT topics
 
-	homepilot2/status/<device id>/position
-	homepilot2/set   /<device id>/position
+	homepilot2/status/<device id>
+	homepilot2/set   /<device id>
 
-Message values are `UP`, `DOWN` or a position value between 0-100, where 0 is all the way up and 100 is all the way down.
+This script accepts values from `0 .. 1.0` either plain format or in JSON object `{"val":1.0}`. 
 
 ## Credits
 
