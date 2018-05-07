@@ -47,8 +47,10 @@ mqtt.on('connect', () => {
 var polling = new Timer(() => {
     getRolladen().then(devices => {
         devices.forEach((device) => {
-            log.debug("homepilot2 < ", device.id, device.name, device.position);
-            mqtt.publish(config.name + '/status/' + device.id, {'val': device.position/100.0});
+            log.debug('homepilot2 <', device.did, device.name, device.position);
+            mqtt.publish(config.name + '/status/' + device.did, {
+                'val': device.position / 100.0
+            });
         });
     }).catch(err => {
         log.error(err.message);
@@ -62,7 +64,7 @@ mqtt.subscribe(config.name + '/set/+', (topic, message, wildcard) => {
     if (typeof message === 'object') {
         if ('val' in message) {
             if (typeof message.val === 'number') {
-                Homepilot.moveId(id, message.val*100).then((result) => {
+                Homepilot.moveId(id, message.val * 100).then((result) => {
                     log.debug("homepilot2 > ", result);
                 }).catch((err) => {
                     log.error("homepilot2 > ", err.message);
@@ -71,7 +73,7 @@ mqtt.subscribe(config.name + '/set/+', (topic, message, wildcard) => {
         }
     } else {
         if (typeof message === 'number') {
-            Homepilot.moveId(id, message.val*100).then((result) => {
+            Homepilot.moveId(id, message * 100).then((result) => {
                 log.debug("homepilot2 > ", result);
             }).catch((err) => {
                 log.error("homepilot2 > ", err.message);
@@ -90,19 +92,7 @@ function getRolladen() {
             uri: "http://" + config.bridgeAddress + "/deviceajax.do?alldevices=1",
             json: true
         }).then(function (response) {
-            var devices = new Array();
-
-            response.devices.forEach((device) => {
-                var tmp = new Object();
-
-                tmp.id = device.did;
-                tmp.name = device.name;
-                tmp.position = device.position;
-
-                devices.push(tmp);
-            });
-
-            resolve(devices);
+            resolve(response.devices);
         }).catch(function (err) {
             reject(err);
         });
