@@ -3,18 +3,13 @@ This bridge connects the Rademacher Homepilot2 to an MQTT broker. I've built and
 
 I also don't use any of the Homepilot's logic functions. Logic is done in an upper layer (MQTT, OpenHAB, ..), so if you want to use this library would recommend to disable all automatic functions (called "Scenes") in the Homepilot webinterface.
 
-## Git clone
+## Locally
 
 	git clone https://github.com/dersimn/homepilot2mqtt.git
 	cd homepilot2mqtt
 	node index.js --help
 
-## Npm global script
-
-	npm install -g homepilot2mqtt
-	homepilot2mqtt --help
-
-### Example usage
+## Docker
 
 	docker run -d --restart=always --mqtt-url mqtt://10.0.0.20 --bridge-address 10.0.0.22 dersimn/homepilot2mqtt
 
