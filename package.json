@@ -1,6 +1,6 @@
 {
   "name": "homepilot2mqtt",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Homepilot2 bridge for MQTT",
   "main": "index.js",
   "bin": {
@@ -20,10 +20,11 @@
   },
   "homepage": "https://github.com/dersimn/homepilot2mqtt#readme",
   "dependencies": {
-    "mqtt": "^2.13.1",
-    "request": "^2.83.0",
+    "mqtt-smarthome-connect": "latest",
+    "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "yalm": "^4.1.0",
-    "yargs": "^10.0.3"
+    "yargs": "^11.0.0",
+    "yetanothertimerlibrary": "^2.1.0"
   }
 }
