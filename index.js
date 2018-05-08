@@ -64,7 +64,7 @@ mqtt.subscribe(config.name + '/set/+', (topic, message, wildcard) => {
     if (typeof message === 'object') {
         if ('val' in message) {
             if (typeof message.val === 'number') {
-                Homepilot.moveId(id, message.val * 100).then((result) => {
+                setRolladen(id, message.val * 100).then((result) => {
                     log.debug("homepilot2 > ", result);
                 }).catch((err) => {
                     log.error("homepilot2 > ", err.message);
@@ -73,7 +73,7 @@ mqtt.subscribe(config.name + '/set/+', (topic, message, wildcard) => {
         }
     } else {
         if (typeof message === 'number') {
-            Homepilot.moveId(id, message * 100).then((result) => {
+            setRolladen(id, message * 100).then((result) => {
                 log.debug("homepilot2 > ", result);
             }).catch((err) => {
                 log.error("homepilot2 > ", err.message);
@@ -81,8 +81,6 @@ mqtt.subscribe(config.name + '/set/+', (topic, message, wildcard) => {
         }
     }
 
-    log.debug(state);
-    setLights(id,state).then().catch();
     polling.exec();
 });
 
