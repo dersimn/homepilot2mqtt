@@ -73,7 +73,7 @@ mqtt.subscribe(config.name + '/set/+', (topic, message, wildcard) => {
         }
     } else {
         if (typeof message === 'number') {
-            setRolladen(id, Number(message.val * 100).toFixed(0)).then((result) => {
+            setRolladen(id, Number(message * 100).toFixed(0)).then((result) => {
                 log.debug("homepilot2 > ", result);
             }).catch((err) => {
                 log.error("homepilot2 > ", err.message);
