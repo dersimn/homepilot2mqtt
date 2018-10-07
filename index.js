@@ -64,7 +64,7 @@ mqtt.subscribe(config.name + '/set/+', (topic, message, wildcard) => {
     if (typeof message === 'object') {
         if ('val' in message) {
             if (typeof message.val === 'number') {
-                setRolladen(id, message.val * 100).then((result) => {
+                setRolladen(id, Number(message.val * 100).toFixed(0)).then((result) => {
                     log.debug("homepilot2 > ", result);
                 }).catch((err) => {
                     log.error("homepilot2 > ", err.message);
@@ -73,7 +73,7 @@ mqtt.subscribe(config.name + '/set/+', (topic, message, wildcard) => {
         }
     } else {
         if (typeof message === 'number') {
-            setRolladen(id, message * 100).then((result) => {
+            setRolladen(id, Number(message.val * 100).toFixed(0)).then((result) => {
                 log.debug("homepilot2 > ", result);
             }).catch((err) => {
                 log.error("homepilot2 > ", err.message);
@@ -105,13 +105,17 @@ function setRolladen(id, position) {
         args.command = 1;
         if ( position == "UP" ) {
             args.cid = 1;
+            log.debug('homepilot2 > UP');
         } else if ( position == "DOWN" ) {
             args.cid = 3;
+            log.debug('homepilot2 > DOWN');
         } else if ( position == "STOP" ) {
             args.cid = 2;
+            log.debug('homepilot2 > STOP');
         } else if ( position <= 100 && position >= 0 ) {
             args.cid = 9;
             args.goto = position;
+            log.debug('homepilot2 > move to', position);
         } else {
             reject("invalid position");
         }
