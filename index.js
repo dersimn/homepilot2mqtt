@@ -47,10 +47,13 @@ mqtt.on('connect', () => {
 var polling = new Timer(() => {
     getRolladen().then(devices => {
         devices.forEach((device) => {
-            log.debug('homepilot2 <', device.did, device.name, device.position);
+            log.debug('homepilot2 <', device.did, device.visible, device.name, device.position);
+
             mqtt.publish(config.name + '/status/' + device.did, {
                 'val': device.position / 100.0
             });
+
+            mqtt.publish(config.name + '/maintenance/' + device.did + '/online', device.visible);
         });
     }).catch(err => {
         log.error(err.message);
